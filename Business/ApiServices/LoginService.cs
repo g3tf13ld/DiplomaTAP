@@ -14,19 +14,19 @@ namespace Business.ApiServices
             Client = client;
         }
 
-        public RestResponse<BaseResponseWithListModel<User>> PostRegisterUser(User userModel)
+        public RestResponse<BaseResponseWithListModel<T>> RegisterUser<T>(UserModel userBusinessModel)
         {
             var endpoint = Configurator.BaseUrl + "/register";
             var request = new RestRequest(endpoint);
-            request.AddBody(userModel);
-            // return Client.ExecuteAsync<BaseResponseWithListModel<User>>(request).Result;
+            request.AddBody(userBusinessModel);
+            return Client.ExecuteAsync<BaseResponseWithListModel<T>>(request).Result;
         }
 
-        public RestResponse<BaseResponseWithResourceModel<User>> PostLogin(string userId)
+        public RestResponse<BaseResponseWithResourceModel<T>> Login<T>(string userId)
         {
             var endpoint = Configurator.BaseUrl + $"/users/{userId}";
             var request = new RestRequest(endpoint);
-            return Client.ExecuteAsync<BaseResponseWithResourceModel<User>>(request).Result;
+            return Client.ExecuteAsync<BaseResponseWithResourceModel<T>>(request).Result;
         }
     }
 }
