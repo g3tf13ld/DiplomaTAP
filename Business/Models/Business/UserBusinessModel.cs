@@ -2,10 +2,10 @@
 
 namespace Business.Models.Business
 {
-    public class User
+    public class UserBusinessModel
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         
         [JsonProperty("email")]
         public string Email { get; set; }

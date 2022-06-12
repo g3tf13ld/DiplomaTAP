@@ -15,35 +15,49 @@ namespace Business.ApiServices
             Client = client;
         }
 
-        public RestResponse<BaseResponseWithListModel<User>> GetUsersList()
+        public RestResponse<BaseResponseWithListModel<UserBusinessModel>> GetUsersList()
         {
             var endpoint = Configurator.BaseUrl + "/users";
             var request = new RestRequest(endpoint);
-            return Client.ExecuteAsync<BaseResponseWithListModel<User>>(request).Result;
+            return Client.ExecuteAsync<BaseResponseWithListModel<UserBusinessModel>>(request).Result;
         }
         
-        public RestResponse<BaseResponseWithResourceModel<User>> GetUserById(string userId)
+        public RestResponse<BaseResponseWithResourceModel<UserBusinessModel>> GetUserById(string userId)
         {
             var endpoint = Configurator.BaseUrl + $"/users/{userId}";
             var request = new RestRequest(endpoint);
-            return Client.ExecuteAsync<BaseResponseWithResourceModel<User>>(request).Result;
+            return Client.ExecuteAsync<BaseResponseWithResourceModel<UserBusinessModel>>(request).Result;
         }
 
-        public void CreateUser(User userModel)
+        public RestResponse<UserModel> CreateUser(UserModel userBusinessModel)
         {
             var endpoint = Configurator.BaseUrl + "/users";
             var request = new RestRequest(endpoint, Method.Post);
-            request.AddBody(JsonConvert.SerializeObject(userModel));
-            // return Client.ExecuteAsync<BaseResponseWithListModel<User>>(request).Result;
+            request.AddBody(JsonConvert.SerializeObject(userBusinessModel));
+            return Client.ExecuteAsync<UserModel>(request).Result;
         }
 
-        public void DeleteUserById(string userId)
+        public RestResponse<UserModel> UpdateUserPutRequest(UserModel userModel)
+        {
+            var endpoint = Configurator.BaseUrl + "/users";
+            var request = new RestRequest(endpoint, Method.Put);
+            request.AddBody(JsonConvert.SerializeObject(userModel));
+            return Client.ExecuteAsync<UserModel>(request).Result;
+        }
+        
+        public RestResponse<UserModel> UpdateUserPatchRequest(UserModel userModel)
+        {
+            var endpoint = Configurator.BaseUrl + "/users";
+            var request = new RestRequest(endpoint, Method.Patch);
+            request.AddBody(JsonConvert.SerializeObject(userModel));
+            return Client.ExecuteAsync<UserModel>(request).Result;
+        }
+
+        public RestResponse DeleteUserById(string userId)
         {
             var endpoint = Configurator.BaseUrl + $"/users/{userId}";
             var request = new RestRequest(endpoint);
-            // return Client.ExecuteAsync<BaseResponseWithResourceModel<User>>(request).Result;
+            return Client.ExecuteAsync(request).Result;
         }
-        
-        
     }
 }
