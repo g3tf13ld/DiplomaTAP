@@ -1,12 +1,12 @@
-﻿using System;
+﻿using NUnit.Framework;
 
 namespace Core
 {
-    public class RegressionAttribute : Attribute
+    public class RegressionAttribute : CategoryAttribute
     {
     }
     
-    public class SmokeAttribute : Attribute
+    public class SmokeAttribute : CategoryAttribute
     {
     }
 }
