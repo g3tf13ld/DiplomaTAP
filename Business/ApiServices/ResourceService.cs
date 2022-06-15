@@ -14,18 +14,19 @@ namespace Business.ApiServices
             Client = client;
         }
 
-        public RestResponse<BaseResponseWithListModel<User>> GetResourcesList()
+        public RestResponse<BaseResponseWithListModel<ResourceModel>> GetResourcesList()
         {
             var endpoint = Configurator.BaseUrl + "/unknown";
             var request = new RestRequest(endpoint);
-            return Client.ExecuteAsync<BaseResponseWithListModel<User>>(request).Result;
+            return Client.ExecuteAsync<BaseResponseWithListModel<ResourceModel>>(request).Result;
         }
         
-        public RestResponse<BaseResponseWithResourceModel<User>> GetResourceById(string userId)
+        public RestResponse<BaseResponseWithResourceModel<ResourceModel>> GetResourceById(string userId)
         {
             var endpoint = Configurator.BaseUrl + $"/unknown/{userId}";
             var request = new RestRequest(endpoint);
-            return Client.ExecuteAsync<BaseResponseWithResourceModel<User>>(request).Result;
+            
+            return Client.ExecuteAsync<BaseResponseWithResourceModel<ResourceModel>>(request).Result;
         }
     }
 }

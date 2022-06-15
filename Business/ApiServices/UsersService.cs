@@ -37,17 +37,17 @@ namespace Business.ApiServices
             return Client.ExecuteAsync<UserModel>(request).Result;
         }
 
-        public RestResponse<UserModel> UpdateUserPutRequest(UserModel userModel)
+        public RestResponse<UserModel> UpdateUserPutRequest(string userId, UserModel userModel)
         {
-            var endpoint = Configurator.BaseUrl + "/users";
+            var endpoint = Configurator.BaseUrl + $"/users/{userId}";
             var request = new RestRequest(endpoint, Method.Put);
             request.AddBody(JsonConvert.SerializeObject(userModel));
             return Client.ExecuteAsync<UserModel>(request).Result;
         }
         
-        public RestResponse<UserModel> UpdateUserPatchRequest(UserModel userModel)
+        public RestResponse<UserModel> UpdateUserPatchRequest(string userId, UserModel userModel)
         {
-            var endpoint = Configurator.BaseUrl + "/users";
+            var endpoint = Configurator.BaseUrl + $"/users/{userId}";
             var request = new RestRequest(endpoint, Method.Patch);
             request.AddBody(JsonConvert.SerializeObject(userModel));
             return Client.ExecuteAsync<UserModel>(request).Result;
@@ -56,7 +56,7 @@ namespace Business.ApiServices
         public RestResponse DeleteUserById(string userId)
         {
             var endpoint = Configurator.BaseUrl + $"/users/{userId}";
-            var request = new RestRequest(endpoint);
+            var request = new RestRequest(endpoint, Method.Delete);
             return Client.ExecuteAsync(request).Result;
         }
     }
