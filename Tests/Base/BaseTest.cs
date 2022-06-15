@@ -2,6 +2,7 @@
 using Core;
 using NUnit.Framework;
 using RestSharp;
+using RestSharp.Authenticators;
 using RestSharp.Serializers.NewtonsoftJson;
 
 namespace Tests.Base
@@ -14,6 +15,7 @@ namespace Tests.Base
         {
             Client = new RestClient(Configurator.BaseUrl);
             Client.UseNewtonsoftJson();
+            Client.Authenticator = new HttpBasicAuthenticator(Configurator.Username, Configurator.Password);
         }
         
         protected void CheckSupportModel(SupportModel supportModel)
