@@ -15,5 +15,8 @@ namespace Business.Models.Business
 
         [JsonProperty("createdAt")]
         public string CreatedAt { get; set; }
+        
+        [JsonProperty("updatedAt")]
+        public string UpdatedAt { get; set; }
     }
 }
