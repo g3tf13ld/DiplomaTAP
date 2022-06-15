@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Business.Models.Business
+namespace Business.Models.API
 {
     public class UserModel
     {

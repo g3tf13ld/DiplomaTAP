@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using Business.ApiServices;
-using Business.Models.Business;
+using Business.Models.API;
 using Core;
 using NUnit.Framework;
 using Tests.Base;
@@ -29,6 +29,7 @@ namespace Tests.Tests
         }
 
         [Test]
+        [Smoke]
         public void SingleUser_ShouldBeOk()
         {
             var response = new UsersService(Client).GetUserById("2");
@@ -48,6 +49,7 @@ namespace Tests.Tests
         }
         
         [Test]
+        [Smoke]
         public void SingleUser_ShouldBeNotFound()
         {
             var response = new UsersService(Client).GetUserById("23");
@@ -60,6 +62,7 @@ namespace Tests.Tests
         }
 
         [Test]
+        [Smoke]
         public void CreateUser_ShouldBeCreated()
         {
             var name = "Pavel";
@@ -83,6 +86,7 @@ namespace Tests.Tests
         }
 
         [Test]
+        [Smoke]
         public void PutUpdateUser_ShouldBeOk()
         {
             var name = "morpheus";
@@ -105,6 +109,7 @@ namespace Tests.Tests
         }
 
         [Test]
+        [Smoke]
         public void PatchUpdateUser_ShouldBeOk()
         {
             var name = "morpheus";
@@ -127,6 +132,7 @@ namespace Tests.Tests
         }
 
         [Test]
+        [Smoke]
         public void DeleteUser_ShouldBeNoContent()
         {
             var response = new UsersService(Client).DeleteUserById("2");
